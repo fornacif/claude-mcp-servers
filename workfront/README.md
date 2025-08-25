@@ -24,50 +24,17 @@ A Model Context Protocol (MCP) server that provides Claude with the ability to i
 
 ## Installation
 
-1. Clone or download this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file with your configuration (see Configuration section)
+Install the package globally using npm:
+
+```bash
+npm install -g workfront-mcp-server
+```
 
 ## Configuration
 
-Create a `.env` file in the project root with the following variables:
+Configuration is handled directly in the Claude Desktop configuration file. See the MCP Integration section below for setup details.
 
-```env
-# Required Environment Variables
-WORKFRONT_BASE_URL=https://your-domain.workfront.com/attask/api/v18.0
-ADOBE_IMS_CLIENT_ID=your_client_id
-ADOBE_IMS_CLIENT_SECRET=your_client_secret
-
-# Optional Environment Variables
-ADOBE_IMS_TOKEN_URL=https://ims-na1.adobelogin.com/ims/token/v3
-ADOBE_IMS_SCOPES=openid,AdobeID,session,additional_info.projectedProductContext,profile,read_organizations,additional_info.roles
-```
-
-### Required Variables
-- `WORKFRONT_BASE_URL`: Your Workfront instance API endpoint
-- `ADOBE_IMS_CLIENT_ID`: Adobe IMS client ID for authentication
-- `ADOBE_IMS_CLIENT_SECRET`: Adobe IMS client secret for authentication
-
-### Optional Variables
-- `ADOBE_IMS_TOKEN_URL`: Adobe IMS token endpoint (defaults to NA1 region)
-- `ADOBE_IMS_SCOPES`: OAuth scopes for authentication (has sensible defaults)
-
-## Usage
-
-### Starting the Server
-
-```bash
-npm start
-# or
-node index.js
-```
-
-The server uses stdio transport and will log authentication information to stderr.
-
-### Available Tools
+## Available Tools
 
 #### Query Tools
 
@@ -148,31 +115,15 @@ The server includes comprehensive error handling for:
 
 This server implements the Model Context Protocol and can be used with Claude Desktop or other MCP-compatible clients. Add it to your MCP configuration to enable Workfront integration in your Claude conversations.
 
-### Option 1: Environment Variables (Recommended)
-Create a `.env` file in your project directory and configure Claude Desktop:
+### Claude Desktop Configuration
+
+After installing the package globally, configure Claude Desktop to use the workfront-mcp-server by passing environment variables directly in the Claude Desktop configuration:
 
 ```json
 {
   "mcpServers": {
     "workfront": {
-      "command": "/opt/homebrew/bin/node",
-      "args": ["/Users/fornacia/Projects/claude-mcp-servers/workfront/index.js"]
-    }
-  }
-}
-```
-
-### Option 2: Direct Environment Configuration
-You can also pass environment variables directly in the Claude Desktop configuration:
-
-```json
-{
-  "mcpServers": {
-    "workfront": {
-      "command": "node",
-      "args": [
-        "/path/to/workfront-mcp-server/index.js"
-      ],
+      "command": "workfront-mcp-server",
       "env": {
         "WORKFRONT_BASE_URL": "https://your-domain.testdrive.workfront.com/attask/api/v20.0",
         "ADOBE_IMS_CLIENT_ID": "your_client_id",
@@ -184,11 +135,19 @@ You can also pass environment variables directly in the Claude Desktop configura
 }
 ```
 
+### Environment Variables
+
+#### Required Variables
+- `WORKFRONT_BASE_URL`: Your Workfront instance API endpoint
+- `ADOBE_IMS_CLIENT_ID`: Adobe IMS client ID for authentication
+- `ADOBE_IMS_CLIENT_SECRET`: Adobe IMS client secret for authentication
+
+#### Optional Variables
+- `ADOBE_IMS_SCOPES`: OAuth scopes for authentication (defaults shown above)
+
 **Important Notes:**
-- Replace `/opt/homebrew/bin/node` with your actual Node.js path (find it using `which node`)
-- Replace `/Users/fornacia/Projects/claude-mcp-servers/workfront/index.js` with the actual path to your server
 - Replace the environment variable values with your actual Workfront and Adobe IMS credentials
-- Never commit real credentials to version control - use Option 1 with `.env` files for security
+- Never commit real credentials to version control
 
 ## Dependencies
 
