@@ -1,0 +1,43 @@
+{
+  "name": "workfront-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server to interface Claude with Adobe Workfront",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "workfront-mcp-server": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "prepublishOnly": "echo 'Publishing to npm...'"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "workfront",
+    "adobe",
+    "claude",
+    "ai",
+    "model-context-protocol"
+  ],
+  "author": "François Fornaciari",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "homepage": "",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ]
+}
