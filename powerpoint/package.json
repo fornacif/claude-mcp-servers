@@ -1,0 +1,15 @@
+{
+  "name": "powerpoint-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for reading PowerPoint (PPTX) files",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "pizzip": "^3.1.7",
+    "node-stream-zip": "^1.15.0"
+  }
+}

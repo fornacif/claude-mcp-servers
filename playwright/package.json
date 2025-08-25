@@ -1,0 +1,31 @@
+{
+  "name": "mcp-playwright-server",
+  "version": "0.1.0",
+  "description": "Serveur MCP utilisant Playwright pour l'extraction d'images et ressources web",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "mcp-playwright-server": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "install-browsers": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "playwright",
+    "web-scraping",
+    "images",
+    "browser-automation"
+  ]
+}
